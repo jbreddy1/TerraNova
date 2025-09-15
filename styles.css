@@ -28,10 +28,12 @@
 
 body {
     font-family: 'Inter', 'Poppins', sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-primary);
     overflow-x: hidden;
     background: var(--bg-primary);
+    letter-spacing: 0.02em;
+    font-size: 1.08rem;
 }
 
 .container {
@@ -281,7 +283,8 @@ body {
     line-height: 1.1;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
-    animation: slideInUp 0.8s ease 0.2s both;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 16px rgba(16,185,129,0.08);
 }
 
 .gradient-text {
@@ -290,17 +293,77 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
+    letter-spacing: 0.06em;
+    animation: gradientMove 2.5s linear infinite alternate;
 }
 
 .hero-description {
     font-size: 1.25rem;
     color: var(--text-secondary);
     margin-bottom: 3rem;
-    line-height: 1.7;
+    line-height: 1.8;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    animation: slideInUp 0.8s ease 0.4s both;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 8px rgba(59,130,246,0.07);
+}
+/* Advanced Animations */
+.animated-bg {
+    animation: fadeInBg 2s ease-in;
+}
+.animated-title {
+    animation: popIn 1.2s cubic-bezier(.17,.67,.83,.67) both;
+}
+.animated-badge {
+    animation: fadeInBadge 1.2s cubic-bezier(.17,.67,.83,.67) both;
+}
+.animated-desc {
+    animation: fadeInDesc 1.5s cubic-bezier(.17,.67,.83,.67) both;
+}
+.animated-role {
+    animation: fadeInRole 1.7s cubic-bezier(.17,.67,.83,.67) both;
+}
+.animated-stats {
+    animation: fadeInStats 2s cubic-bezier(.17,.67,.83,.67) both;
+}
+.animated-float {
+    animation: floatIcon 6s ease-in-out infinite alternate;
+}
+
+@keyframes fadeInBg {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.7) translateY(40px); }
+    80% { opacity: 1; transform: scale(1.05) translateY(-8px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fadeInBadge {
+    0% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeInDesc {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRole {
+    0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeInStats {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes gradientMove {
+    0% { background-position: left; }
+    100% { background-position: right; }
+}
+@keyframes floatIcon {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-18px) rotate(6deg) scale(1.08); }
+    100% { transform: translateY(0) rotate(-2deg) scale(1); }
 }
 
 /* Role Selection */
