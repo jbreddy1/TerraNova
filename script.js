@@ -13,6 +13,36 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Theme toggle functionality
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Update theme icon
+    const themeIcon = document.getElementById('theme-icon');
+    if (newTheme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        themeIcon.className = 'fas fa-moon';
+    }
+}
+
+// Initialize theme on page load
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const themeIcon = document.getElementById('theme-icon');
+    if (savedTheme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        themeIcon.className = 'fas fa-moon';
+    }
+}
+
 // Language switching functionality
 function changeLanguage() {
     const languageSelect = document.getElementById('languageSelect');
@@ -235,8 +265,9 @@ function revealSections() {
     });
 }
 
-// Initialize all animations
+// Initialize all animations and theme
 document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
     revealSections();
 });
 

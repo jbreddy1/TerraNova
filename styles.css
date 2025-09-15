@@ -26,6 +26,20 @@
     --gradient-accent: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
+[data-theme="dark"] {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-accent: #064e3b;
+    --border-color: #374151;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
 body {
     font-family: 'Inter', 'Poppins', sans-serif;
     line-height: 1.7;
@@ -108,6 +122,33 @@ body {
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme-toggle {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .nav-link {
@@ -734,16 +775,23 @@ body {
     color: var(--text-secondary);
 }
 
-/* Impact Section */
-.impact {
+/* Analytics Section */
+.analytics {
     padding: 6rem 0;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
 }
 
-.impact-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
+.analytics-chart {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Dark mode transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Contact Section */
