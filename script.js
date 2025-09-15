@@ -13,6 +13,63 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Language switching functionality
+function changeLanguage() {
+    const languageSelect = document.getElementById('languageSelect');
+    const selectedLanguage = languageSelect.value;
+    
+    // Update all elements with data attributes
+    document.querySelectorAll('[data-en], [data-hi], [data-or]').forEach(element => {
+        const text = element.getAttribute(`data-${selectedLanguage}`);
+        if (text) {
+            element.textContent = text;
+        }
+    });
+    
+    // Update page direction for RTL languages if needed
+    if (selectedLanguage === 'hi' || selectedLanguage === 'or') {
+        document.documentElement.setAttribute('dir', 'ltr'); // Keep LTR for now
+    } else {
+        document.documentElement.setAttribute('dir', 'ltr');
+    }
+}
+
+// Role selection functionality
+function selectRole(role) {
+    // Add visual feedback
+    const roleCards = document.querySelectorAll('.role-card');
+    roleCards.forEach(card => {
+        card.style.transform = 'scale(0.95)';
+        card.style.opacity = '0.7';
+    });
+    
+    // Show loading state
+    const selectedCard = document.querySelector(`.${role}-card`);
+    if (selectedCard) {
+        selectedCard.classList.add('loading');
+    }
+    
+    // Simulate role selection process
+    setTimeout(() => {
+        if (role === 'farmer') {
+            // Redirect to farmer interface
+            alert('Redirecting to Farmer Dashboard...\n\nIn the full application, this would:\n- Show OTP login for farmers\n- Collect basic farm information\n- Display personalized yield predictions');
+            // window.location.href = '/farmer-dashboard';
+        } else if (role === 'government') {
+            // Redirect to government interface
+            alert('Redirecting to Government Portal...\n\nIn the full application, this would:\n- Show secure login for government officers\n- Display district-level analytics\n- Provide policy decision support tools');
+            // window.location.href = '/government-portal';
+        }
+        
+        // Reset card states
+        roleCards.forEach(card => {
+            card.style.transform = '';
+            card.style.opacity = '';
+            card.classList.remove('loading');
+        });
+    }, 1000);
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
