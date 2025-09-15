@@ -684,6 +684,68 @@ body {
     font-weight: 500;
 }
 
+/* Features Section */
+.features {
+    padding: 6rem 0;
+    background: var(--bg-primary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--gradient-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.feature-icon i { font-size: 1.25rem; }
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+}
+
+/* Impact Section */
+.impact {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+}
+
+.impact-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
 /* Contact Section */
 .contact {
     padding: 6rem 0;

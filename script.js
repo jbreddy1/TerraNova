@@ -34,41 +34,7 @@ function changeLanguage() {
     }
 }
 
-// Role selection functionality
-function selectRole(role) {
-    // Add visual feedback
-    const roleCards = document.querySelectorAll('.role-card');
-    roleCards.forEach(card => {
-        card.style.transform = 'scale(0.95)';
-        card.style.opacity = '0.7';
-    });
-    
-    // Show loading state
-    const selectedCard = document.querySelector(`.${role}-card`);
-    if (selectedCard) {
-        selectedCard.classList.add('loading');
-    }
-    
-    // Simulate role selection process
-    setTimeout(() => {
-        if (role === 'farmer') {
-            // Redirect to farmer interface
-            alert('Redirecting to Farmer Dashboard...\n\nIn the full application, this would:\n- Show OTP login for farmers\n- Collect basic farm information\n- Display personalized yield predictions');
-            // window.location.href = '/farmer-dashboard';
-        } else if (role === 'government') {
-            // Redirect to government interface
-            alert('Redirecting to Government Portal...\n\nIn the full application, this would:\n- Show secure login for government officers\n- Display district-level analytics\n- Provide policy decision support tools');
-            // window.location.href = '/government-portal';
-        }
-        
-        // Reset card states
-        roleCards.forEach(card => {
-            card.style.transform = '';
-            card.style.opacity = '';
-            card.classList.remove('loading');
-        });
-    }, 1000);
-}
+// Role selection removed for landing-only focus
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -84,77 +50,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Scroll to features section
-function scrollToFeatures() {
-    document.getElementById('features').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
+// Direct anchors handle scrolling
 
-// Modal functionality
-const modal = document.getElementById('signInModal');
+// Modal removed for landing-only focus
 
-function openSignInModal() {
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeSignInModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when clicking outside of it
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeSignInModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.style.display === 'block') {
-        closeSignInModal();
-    }
-});
-
-// Form submission handling
-const signinForm = document.querySelector('.signin-form');
-signinForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    // Basic validation
-    if (!email || !password) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Simulate sign in process
-    const submitBtn = signinForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
-    submitBtn.disabled = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-        // For demo purposes, just show success message
-        alert('Sign in successful! Redirecting to dashboard...');
-        closeSignInModal();
-        
-        // Reset form
-        signinForm.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // In a real application, you would redirect to the dashboard
-        // window.location.href = '/dashboard';
-    }, 2000);
-});
+// Auth form removed for landing-only focus
 
 // Show sign up form (placeholder)
 function showSignUp() {
@@ -292,31 +192,7 @@ function validatePassword(password) {
 }
 
 // Real-time form validation
-document.getElementById('email').addEventListener('blur', function() {
-    const email = this.value;
-    const isValid = validateEmail(email);
-    
-    if (email && !isValid) {
-        this.style.borderColor = '#e74c3c';
-        showFieldError(this, 'Please enter a valid email address');
-    } else {
-        this.style.borderColor = '#4a7c59';
-        hideFieldError(this);
-    }
-});
-
-document.getElementById('password').addEventListener('blur', function() {
-    const password = this.value;
-    const isValid = validatePassword(password);
-    
-    if (password && !isValid) {
-        this.style.borderColor = '#e74c3c';
-        showFieldError(this, 'Password must be at least 6 characters');
-    } else {
-        this.style.borderColor = '#4a7c59';
-        hideFieldError(this);
-    }
-});
+// Input validation hooks removed (no sign-in form on landing)
 
 function showFieldError(field, message) {
     hideFieldError(field); // Remove existing error
@@ -366,26 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add keyboard navigation support
 document.addEventListener('keydown', (e) => {
-    // Tab navigation for modal
-    if (modal.style.display === 'block') {
-        const focusableElements = modal.querySelectorAll('input, button, a');
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-        
-        if (e.key === 'Tab') {
-            if (e.shiftKey) {
-                if (document.activeElement === firstElement) {
-                    e.preventDefault();
-                    lastElement.focus();
-                }
-            } else {
-                if (document.activeElement === lastElement) {
-                    e.preventDefault();
-                    firstElement.focus();
-                }
-            }
-        }
-    }
+    // No modal trapping needed
 });
 
 // Add ripple effect to buttons
