@@ -269,6 +269,57 @@ function revealSections() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
     revealSections();
+    // Initialize chart if canvas exists
+    const ctx = document.getElementById('yieldChart');
+    if (ctx && window.Chart) {
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+                datasets: [
+                    {
+                        label: 'Yield (q/ha)',
+                        data: [18, 22, 25, 28, 30, 32],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Input Efficiency (%)',
+                        data: [60, 65, 70, 74, 78, 82],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    x: { grid: { color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') } },
+                    y: { grid: { color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') } }
+                }
+            }
+        });
+
+        // Update chart grid colors on theme change
+        const observer = new MutationObserver(() => {
+            const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
+            chart.options.scales.x.grid.color = gridColor;
+            chart.options.scales.y.grid.color = gridColor;
+            chart.update();
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
 });
 
 // Add keyboard navigation support
